@@ -48,6 +48,12 @@ Planned enhancements include:
 
 ---
 
+## 🏆 Acknowledgments
+
+This project was developed as part of the **STEM Fellowship Inter-University Big Data Challenge 2024**. The challenge provided a platform to apply data science techniques to real-world problems, and this project focused on leveraging social media data for mental health insights.
+
+---
+
 ## 👥 Contributors
 
 This project was developed by:
@@ -58,3 +64,4 @@ This project was developed by:
 - Pratheepan Gunaratnam
 - Sirada Thoungvitayasutee
 
+---

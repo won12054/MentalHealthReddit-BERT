@@ -9,13 +9,22 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import torch
 from transformers import BertTokenizer, BertForSequenceClassification
+from fastapi.middleware.cors import CORSMiddleware
 
 class TextRequest(BaseModel):
     text: str
     
 app = FastAPI()
 
-model_path = 'C:\\Users\\Public\\6th\\dataset\\bert_best_model_.pth'
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+model_path = 'C:\\Users\\Public\\6th\\bert_best_model.pth'
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=5)
 model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
@@ -63,4 +72,4 @@ def get_prediction(request: TextRequest):
         "confidence_scores": confidence_scores
     }
 
-# uvicorn backend_nlp:app --reload --host 0.0.0.0 --port 8000
+# uvicorn backend:app --reload --host 0.0.0.0 --port 8000
